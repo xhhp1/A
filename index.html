@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الألقاب</title>
+    <style>
+      :root {
+        --bg: #1b1b1d;
+        --bg-secondary: #282a2e;
+        --card: #313338;
+        --accent: #5e5e4d;
+        --accent-strong: #7e7e63;
+        --accent-soft: rgba(94, 94, 77, 0.2);
+        --accent-outline: rgba(94, 94, 77, 0.25);
+        --accent-shadow: rgba(94, 94, 77, 0.18);
+        --card-tint: rgba(176, 82, 95, 0.32);
+        --card-tint-soft: rgba(176, 82, 95, 0.12);
+        --on-accent: #ffffff;
+        --text: #ffffff;
+        --muted: #a0a0a0;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.16);
+        --shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+        --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.2);
+        --radius: 24px;
+        --radius-sm: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(94, 94, 77, 0.24), transparent 26%),
+          linear-gradient(135deg, var(--bg) 0%, #1a1a1c 100%);
+        color: var(--text);
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      .app-shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 8px 22px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--accent-outline);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        color: var(--accent);
+      }
+
+      .brand-mark svg path {
+        fill: currentColor;
+      }
+
+      .topbar .brand span:last-child {
+        font-size: 1.02rem;
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .tab-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid transparent;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 180ms ease-in-out, color 180ms ease-in-out, transform 180ms ease-in-out, border-color 180ms ease-in-out;
+      }
+
+      .icon-slot {
+        display: inline-flex;
+        flex: 0 0 auto;
+        color: currentColor;
+      }
+
+      .icon-slot svg {
+        display: block;
+      }
+
+      .tab-btn:hover,
+      .tab-btn:focus-visible {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.09);
+        border-color: var(--line-strong);
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      .tab-btn.active {
+        color: var(--on-accent);
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        box-shadow: 0 10px 24px var(--accent-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 20px 8px 30px;
+      }
+
+      .hero-copy h1 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+        font-size: clamp(1.9rem, 3vw, 2.55rem);
+        letter-spacing: -0.03em;
+      }
+
+      .hero-copy p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 660px;
+      }
+
+      .hero-status {
+        padding: 14px 18px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--accent-outline);
+        min-width: 220px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero-status .eyebrow {
+        display: block;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .hero-status strong {
+        display: block;
+        font-size: 1rem;
+      }
+
+      .content-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        border-radius: var(--radius);
+        border: 1px solid var(--accent-outline);
+        background: linear-gradient(135deg, var(--card-tint), var(--card-tint-soft));
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transition: transform 260ms ease-in-out, box-shadow 260ms ease-in-out, background 260ms ease-in-out, border-color 260ms ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+      }
+
+      .card.has-open-dropdown {
+        z-index: 50;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 55%);
+        pointer-events: none;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .card-title .dot {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+
+      .field-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .division-shell {
+        display: grid;
+        gap: 12px;
+        padding: 10px 0 2px;
+        animation: fadeSlideIn 280ms ease-in-out;
+      }
+
+      .division-shell[hidden] {
+        display: none !important;
+      }
+
+      .division-tabs {
+        display: grid;
+        grid-template-columns: repeat(var(--division-columns, 2), minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .division-tab {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border-radius: 16px;
+        padding: 12px 12px;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 220ms ease-in-out, border-color 220ms ease-in-out, background 220ms ease-in-out, box-shadow 220ms ease-in-out;
+      }
+
+      .division-tab:hover,
+      .division-tab:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--accent-outline);
+        background: rgba(255, 255, 255, 0.08);
+        outline: none;
+      }
+
+      .division-tab.active {
+        border-color: var(--accent-outline);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+        box-shadow: 0 10px 22px var(--accent-shadow);
+      }
+
+      .division-tab strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+
+      .division-tab small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .division-tab.active small {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .input,
+      .number-input {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 16px;
+        font-size: 1rem;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        outline: none;
+        transition: border-color 180ms ease-in-out, box-shadow 180ms ease-in-out, background 180ms ease-in-out;
+      }
+
+      .input::placeholder,
+      .number-input::placeholder {
+        color: rgba(255, 255, 255, 0.36);
+      }
+
+      .input:focus,
+      .number-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 16px;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: inherit;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        cursor: pointer;
+        transition: border-color 180ms ease-in-out, box-shadow 180ms ease-in-out, background 180ms ease-in-out;
+      }
+
+      .dropdown-trigger:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .dropdown-trigger:focus-visible {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+
+      .dropdown.open .dropdown-trigger {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .dropdown-value {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .dropdown-value.is-placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 500;
+      }
+
+      .dropdown-chevron {
+        flex: 0 0 auto;
+        color: var(--muted);
+        transition: transform 220ms ease-in-out, color 220ms ease-in-out;
+      }
+
+      .dropdown.open .dropdown-chevron {
+        transform: rotate(180deg);
+        color: var(--accent-strong);
+      }
+
+      .dropdown-panel {
+        position: absolute;
+        z-index: 25;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        min-width: 100%;
+        border: 1px solid var(--accent-outline);
+        border-radius: 18px;
+        background: rgba(20, 20, 23, 0.97);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        overflow: hidden;
+        transform-origin: top center;
+        animation: dropdownIn 190ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .dropdown-panel[hidden] {
+        display: none;
+      }
+
+      @keyframes dropdownIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .dropdown-list {
+        max-height: 260px;
+        overflow-y: auto;
+        padding: 6px;
+        display: grid;
+        gap: 2px;
+      }
+
+      .dropdown-list::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .dropdown-list::-webkit-scrollbar-thumb {
+        background: var(--accent-outline);
+        border-radius: 8px;
+      }
+
+      .dropdown-option {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--text);
+        text-align: left;
+        padding: 11px 12px;
+        font-size: 0.94rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 150ms ease-in-out, color 150ms ease-in-out, transform 150ms ease-in-out;
+      }
+
+      .dropdown-option:hover,
+      .dropdown-option.is-highlighted {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateX(-2px);
+      }
+
+      .dropdown-option.active {
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        color: var(--on-accent);
+        font-weight: 700;
+        transform: none;
+      }
+
+      .dropdown-option .check-icon {
+        flex: 0 0 auto;
+        width: 15px;
+        height: 15px;
+        color: var(--on-accent);
+        opacity: 0;
+        transform: scale(0.6);
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+      }
+
+      .dropdown-option.active .check-icon {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .dropdown-empty {
+        padding: 20px 14px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .suggestion-wrap {
+        position: relative;
+      }
+
+      .suggestions {
+        position: absolute;
+        z-index: 20;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(23, 23, 25, 0.97);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+
+      .suggestions[hidden] {
+        display: none;
+      }
+
+      .suggestion-item {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: var(--text);
+        text-align: left;
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: background 180ms ease-in-out;
+      }
+
+      .suggestion-item:hover,
+      .suggestion-item:focus-visible {
+        background: rgba(255, 255, 255, 0.08);
+        outline: none;
+      }
+
+      .code-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .code-letter {
+        flex: 0 0 84px;
+      }
+
+      .code-number {
+        flex: 1;
+      }
+
+      .summary-card {
+        grid-column: 1 / -1;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .summary-item {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--line);
+      }
+
+      .summary-item .label {
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+
+      .summary-item .value {
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 16px;
+        padding: 4px 6px 2px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-size: 0.96rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 180ms ease-in-out, box-shadow 180ms ease-in-out, background 180ms ease-in-out;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-1px);
+        outline: none;
+        box-shadow: 0 12px 28px var(--accent-shadow);
+      }
+
+      .btn-primary {
+        color: var(--on-accent);
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        box-shadow: 0 10px 24px var(--accent-shadow);
+      }
+
+      .btn-secondary {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid var(--line);
+      }
+
+      .toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 30;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(19, 19, 21, 0.94);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: var(--shadow);
+        transform: translateY(18px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 220ms ease-in-out, transform 220ms ease-in-out;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .page-transition {
+        animation: fadeSlideIn 280ms ease-in-out;
+      }
+
+      @keyframes fadeSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 12px;
+        }
+
+        .app-shell {
+          padding: 12px;
+          border-radius: 22px;
+        }
+
+        .topbar,
+        .hero {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .tabs {
+          justify-content: flex-start;
+        }
+
+        .hero-status {
+          width: 100%;
+        }
+
+        .code-row {
+          flex-direction: column;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <nav class="topbar" aria-label="التنقل الرئيسي">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 4H17V6.5C17 8.433 15.433 10 13.5 10H10.5C8.567 10 7 8.433 7 6.5V4Z" opacity="0.95" />
+              <path d="M6 10H18C19.105 10 20 10.895 20 12V15C20 18.314 17.314 21 14 21H10C6.686 21 4 18.314 4 15V12C4 10.895 4.895 10 6 10Z" opacity="0.85" />
+            </svg>
+          </div>
+          <span></span>
+        </div>
+        <div class="tabs" role="tablist" aria-label="القطاعات">
+          <button class="tab-btn active" data-sector="red-crescent" role="tab" aria-selected="true"><span class="icon-slot" id="redCrescentIcon" aria-hidden="true"></span>الهلال الأحمر</button>
+          <button class="tab-btn" data-sector="blaine" role="tab" aria-selected="false"><span class="icon-slot" id="blaineIcon" aria-hidden="true"></span>إدارة الشرطة</button>
+          <button class="tab-btn" data-sector="los-santos" role="tab" aria-selected="false"><span class="icon-slot" id="losSantosIcon" aria-hidden="true"></span>إدارة شرطة لوس</button>
+          <button class="tab-btn" data-sector="administration" role="tab" aria-selected="false"><span class="icon-slot" id="administrationIcon" aria-hidden="true"></span>شرطة بوليتو</button>
+          <button class="tab-btn" data-sector="mechanics" role="tab" aria-selected="false"><span class="icon-slot" id="mechanicsIcon" aria-hidden="true"></span>قطاع الميكانيك</button>
+        </div>
+      </nav>
+
+      <header class="hero" aria-label="قسم الترويسة">
+        <div class="hero-copy">
+          <h1><span class="icon-slot" id="dashboardIcon" aria-hidden="true"></span> لوحة التحكم </h1>
+        </div>
+        <div class="hero-status" aria-live="polite">
+          <span class="eyebrow">القطاع الحالي</span>
+          <strong id="currentSectorLabel">الهلال الأحمر</strong>
+        </div>
+      </header>
+
+      <main class="content-grid" id="contentPanel">
+        <section class="card" aria-labelledby="profileTitle">
+          <div class="card-header">
+            <div class="card-title" id="profileTitle"><span class="dot"></span>الملف الشخصي</div>
+          </div>
+          <div class="field-stack">
+            <div>
+              <label for="nameInput">الاسم</label>
+              <div class="suggestion-wrap">
+                <input id="nameInput" class="input" type="text" placeholder="أدخل الاسم" autocomplete="off" aria-autocomplete="list" aria-controls="recentNamesList" aria-expanded="false" />
+                <div id="recentNamesList" class="suggestions" hidden></div>
+              </div>
+            </div>
+            <div>
+              <label for="codeLetterTrigger">الرمز الشخصي</label>
+              <div class="code-row">
+                <div class="dropdown code-letter" id="codeLetterDropdown">
+                  <button type="button" class="dropdown-trigger" id="codeLetterTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="حرف الرمز">
+                    <span class="dropdown-value" id="codeLetterValueLabel">G</span>
+                    <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <div class="dropdown-panel" id="codeLetterPanel" hidden>
+                    <div class="dropdown-list" id="codeLetterList" role="listbox" aria-label="حرف الرمز"></div>
+                  </div>
+                </div>
+                <input id="codeNumber" class="number-input code-number" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" aria-label="رقم الرمز" placeholder="004" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="selectionTitle">
+          <div class="card-header">
+            <div class="card-title" id="selectionTitle"><span class="dot"></span>اختيار المسمى</div>
+          </div>
+          <div class="field-stack">
+            <div id="divisionShell" class="division-shell" hidden>
+              <div class="division-tabs" role="tablist" aria-label="أقسام الشرطة">
+                <button class="division-tab active" type="button" data-division="general-security" data-sector="blaine" role="tab" aria-selected="true">
+                  <strong>الأمن العام</strong>
+                  <small>الرتب والوظائف الأساسية</small>
+                </button>
+                <button class="division-tab" type="button" data-division="road-security" data-sector="blaine" role="tab" aria-selected="false">
+                  <strong>أمن الطرق</strong>
+                  <small>الوظائف المرورية والحركة</small>
+                </button>
+                <button class="division-tab" type="button" data-division="los" data-sector="red-crescent" role="tab" aria-selected="false" hidden>
+                  <strong>الهلال الأحمر لوس</strong>
+                  <small>منطقة الهلال الأحمر لوس</small>
+                </button>
+                <button class="division-tab" type="button" data-division="san-diego" data-sector="red-crescent" role="tab" aria-selected="false" hidden>
+                  <strong>الهلال الأحمر ساندي</strong>
+                  <small>منطقة الهلال الأحمر ساندي</small>
+                </button>
+                <button class="division-tab" type="button" data-division="paleto" data-sector="red-crescent" role="tab" aria-selected="false" hidden>
+                  <strong>الهلال الأحمر بوليتو</strong>
+                  <small>منطقة الهلال الأحمر بوليتو</small>
+                </button>
+              </div>
+            </div>
+            <div>
+              <label for="titleDropdownTrigger">مسمى القطاع</label>
+              <div class="dropdown" id="titleDropdown">
+                <button type="button" class="dropdown-trigger" id="titleDropdownTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="اختيار مسمى القطاع">
+                  <span class="dropdown-value is-placeholder" id="titleDropdownValue">اختر المسمى</span>
+                  <svg class="dropdown-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="dropdown-panel" id="titleDropdownPanel" hidden>
+                  <div class="dropdown-list" id="titleDropdownList" role="listbox" aria-label="اختيار مسمى القطاع"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card summary-card" aria-labelledby="summaryTitle">
+          <div class="card-header">
+            <div class="card-title" id="summaryTitle"><span class="dot"></span>النتيجة النهائية</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item" id="summaryNameItem" hidden>
+              <div class="label">اسم المستخدم</div>
+              <div class="value" id="summaryName">—</div>
+            </div>
+            <div class="summary-item">
+              <div class="label">الرمز الشخصي</div>
+              <div class="value" id="summaryCode">—</div>
+            </div>
+            <div class="summary-item">
+              <div class="label">المسمى النهائي</div>
+              <div class="value formatted-result" id="summaryTitleValue">—</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="actions">
+        <button id="copyButton" class="btn btn-primary" type="button"><span class="icon-slot" id="copyIcon" aria-hidden="true"></span>نسخ</button>
+        <button id="resetButton" class="btn btn-secondary" type="button"><span class="icon-slot" id="resetIcon" aria-hidden="true"></span>إعادة تعيين</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="https://unpkg.com/reicon@latest/umd/reicon.js"></script>
+    <script>
+      // =============================
+      // Data structure for future expansion
+      // =============================
+      const redCrescentTitles = [];
+      // Add Red Crescent titles here later.
+
+      const losSantosTitles = ["ردع", "رعد", "شمال", "جنوب", "غرب", "شرق", "شين", "جيم", "حماية"];
+      // Add Los Santos Police titles here later.
+
+      const paletoTitles = ["مجد", "ردع", "شهاب", "سيف", "رمح", "حد", "سلاح", "شرطة"];
+      // Add Paleto Police titles here later.
+
+      const mechanicsTitles = ["مشرف منطقة", "مشرف ميداني", "مشرف عام", "مستشار القائد", "قيادة الكراج"];
+      // Add Mechanics titles here later.
+
+      const policeAdministrationDivisions = {
+        "general-security": {
+          label: "الأمن العام",
+          titles: ["درع", "سهم", "جنوب", "غرب", "رعد", "حماية", "سين", "باء"]
+        },
+        "road-security": {
+          label: "أمن الطرق",
+          titles: ["سيف", "رصد", "ساهر", "أمان", "شهاب", "جيم", "لام", "دال"]
+        }
+      };
+
+      const redCrescentDivisions = {
+        "los": {
+          label: "الهلال الأحمر لوس",
+          titles: ["إشراف عام", "إشراف ميداني", "لام 1", "لام 2", "لام 3", "لام 4", "لام 5", "فرسان"]
+        },
+        "san-diego": {
+          label: "الهلال الأحمر ساندي",
+          titles: ["إشراف عام", "إشراف ميداني", "سين 1", "سين", "باء 1", "باء", "جيم 1", "جيم 2"]
+        },
+        paleto: {
+          label: "الهلال الأحمر بوليتو",
+          titles: ["إشراف عام", "إشراف ميداني"]
+        }
+      };
+
+      const sectorDefinitions = [
+        {
+          id: "red-crescent",
+          label: "الهلال الأحمر",
+          titles: [],
+          divisions: redCrescentDivisions
+        },
+        {
+          id: "blaine",
+          label: "إدارة الشرطة",
+          titles: [],
+          divisions: policeAdministrationDivisions
+        },
+        { id: "los-santos", label: "إدارة شرطة لوس", titles: losSantosTitles },
+        { id: "administration", label: "شرطة بوليتو", titles: paletoTitles },
+        { id: "mechanics", label: "قطاع الميكانيك", titles: mechanicsTitles }
+      ];
+
+      const sectorThemeMap = {
+        "red-crescent": {
+          accent: "#6b2f37",
+          accentStrong: "#8a3d48",
+          accentSoft: "rgba(107, 47, 55, 0.2)",
+          accentOutline: "rgba(107, 47, 55, 0.26)",
+          accentShadow: "rgba(107, 47, 55, 0.18)",
+          cardTint: "rgba(176, 82, 95, 0.32)",
+          cardTintSoft: "rgba(176, 82, 95, 0.12)"
+        },
+        blaine: {
+          accent: "#2f4f72",
+          accentStrong: "#3d628f",
+          accentSoft: "rgba(47, 79, 114, 0.2)",
+          accentOutline: "rgba(47, 79, 114, 0.24)",
+          accentShadow: "rgba(47, 79, 114, 0.18)",
+          cardTint: "rgba(79, 122, 176, 0.32)",
+          cardTintSoft: "rgba(79, 122, 176, 0.12)"
+        },
+        "los-santos": {
+          accent: "#2f5b42",
+          accentStrong: "#3e7754",
+          accentSoft: "rgba(47, 91, 66, 0.2)",
+          accentOutline: "rgba(47, 91, 66, 0.24)",
+          accentShadow: "rgba(47, 91, 66, 0.18)",
+          cardTint: "rgba(79, 148, 112, 0.32)",
+          cardTintSoft: "rgba(79, 148, 112, 0.12)"
+        },
+        administration: {
+          accent: "#5f4632",
+          accentStrong: "#7b5b3d",
+          accentSoft: "rgba(95, 70, 50, 0.2)",
+          accentOutline: "rgba(95, 70, 50, 0.24)",
+          accentShadow: "rgba(95, 70, 50, 0.18)",
+          cardTint: "rgba(163, 122, 85, 0.32)",
+          cardTintSoft: "rgba(163, 122, 85, 0.12)"
+        },
+        mechanics: {
+          accent: "#f0eab9",
+          accentStrong: "#e2d585",
+          accentSoft: "rgba(240, 234, 185, 0.25)",
+          accentOutline: "rgba(240, 234, 185, 0.35)",
+          accentShadow: "rgba(240, 234, 185, 0.25)",
+          cardTint: "rgba(240, 234, 185, 0.32)",
+          cardTintSoft: "rgba(240, 234, 185, 0.12)"
+        }
+      };
+
+      function getReadableTextColor(hex) {
+        const value = hex.replace("#", "");
+        const r = parseInt(value.substring(0, 2), 16) / 255;
+        const g = parseInt(value.substring(2, 4), 16) / 255;
+        const b = parseInt(value.substring(4, 6), 16) / 255;
+        const linear = (channel) => (channel <= 0.03928 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4));
+        const luminance = 0.2126 * linear(r) + 0.7152 * linear(g) + 0.0722 * linear(b);
+        return luminance > 0.5 ? "#1b1b1d" : "#ffffff";
+      }
+
+      const storageKeys = {
+        names: "sector-titles-recent-names",
+        codeLetter: "sector-titles-code-letter",
+        codeNumber: "sector-titles-code-number",
+        activeTab: "sector-titles-active-tab",
+        activeDivision: "sector-titles-active-division",
+        selectedTitleBySector: "sector-titles-selected-title"
+      };
+
+      const elements = {
+        nameInput: document.getElementById("nameInput"),
+        recentNamesList: document.getElementById("recentNamesList"),
+        codeNumber: document.getElementById("codeNumber"),
+        divisionShell: document.getElementById("divisionShell"),
+        currentSectorLabel: document.getElementById("currentSectorLabel"),
+        summaryName: document.getElementById("summaryName"),
+        summaryCode: document.getElementById("summaryCode"),
+        summaryTitleValue: document.getElementById("summaryTitleValue"),
+        copyButton: document.getElementById("copyButton"),
+        resetButton: document.getElementById("resetButton"),
+        contentPanel: document.getElementById("contentPanel"),
+        toast: document.getElementById("toast")
+      };
+
+      let recentNames = [];
+      let activeSector = "red-crescent";
+      let activeDivision = "general-security";
+      let selectedTitleBySector = {};
+      let toastTimer;
+      let allDropdowns = [];
+
+      function buildCheckIcon() {
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("class", "check-icon");
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("aria-hidden", "true");
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute("d", "M5 13l4 4L19 7");
+        path.setAttribute("stroke", "currentColor");
+        path.setAttribute("stroke-width", "2.5");
+        path.setAttribute("stroke-linecap", "round");
+        path.setAttribute("stroke-linejoin", "round");
+        svg.appendChild(path);
+        return svg;
+      }
+
+      function createDropdown({ root, trigger, panel, list, valueLabel, placeholder, onChange }) {
+        let options = [];
+        let value = "";
+        let placeholderText = placeholder || "";
+        let highlightedIndex = -1;
+        const hostCard = root.closest(".card");
+
+        function isOpen() {
+          return root.classList.contains("open");
+        }
+
+        function renderList() {
+          list.innerHTML = "";
+          highlightedIndex = options.findIndex((opt) => opt.value === value);
+
+          if (!options.length) {
+            const empty = document.createElement("div");
+            empty.className = "dropdown-empty";
+            empty.textContent = placeholderText;
+            list.appendChild(empty);
+            return;
+          }
+
+          options.forEach((opt, index) => {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className = "dropdown-option";
+            item.setAttribute("role", "option");
+            item.dataset.value = opt.value;
+
+            const label = document.createElement("span");
+            label.textContent = opt.label;
+            item.appendChild(label);
+            item.appendChild(buildCheckIcon());
+
+            const isActive = opt.value === value;
+            item.classList.toggle("active", isActive);
+            item.classList.toggle("is-highlighted", index === highlightedIndex);
+            item.setAttribute("aria-selected", String(isActive));
+
+            item.addEventListener("click", () => {
+              selectValue(opt.value);
+              close();
+              trigger.focus();
+            });
+
+            list.appendChild(item);
+          });
+        }
+
+        function refreshValueLabel() {
+          const match = options.find((opt) => opt.value === value);
+          valueLabel.textContent = match ? match.label : placeholderText;
+          valueLabel.classList.toggle("is-placeholder", !match);
+        }
+
+        function selectValue(nextValue, { silent = false } = {}) {
+          value = nextValue;
+          refreshValueLabel();
+          if (isOpen()) {
+            renderList();
+          }
+          if (!silent && typeof onChange === "function") {
+            onChange(value);
+          }
+        }
+
+        function moveHighlight(direction) {
+          const items = Array.from(list.querySelectorAll(".dropdown-option"));
+          if (!items.length) {
+            return;
+          }
+          highlightedIndex = (highlightedIndex + direction + items.length) % items.length;
+          items.forEach((item, idx) => item.classList.toggle("is-highlighted", idx === highlightedIndex));
+          items[highlightedIndex].scrollIntoView({ block: "nearest" });
+        }
+
+        function selectHighlighted() {
+          const items = list.querySelectorAll(".dropdown-option");
+          if (items[highlightedIndex]) {
+            selectValue(items[highlightedIndex].dataset.value);
+            close();
+            trigger.focus();
+          }
+        }
+
+        function open() {
+          if (isOpen()) {
+            return;
+          }
+          allDropdowns.forEach((d) => {
+            if (d !== controller) {
+              d.close();
+            }
+          });
+          root.classList.add("open");
+          trigger.setAttribute("aria-expanded", "true");
+          panel.hidden = false;
+          renderList();
+          hostCard?.classList.add("has-open-dropdown");
+        }
+
+        function close() {
+          if (!isOpen()) {
+            return;
+          }
+          root.classList.remove("open");
+          trigger.setAttribute("aria-expanded", "false");
+          panel.hidden = true;
+          hostCard?.classList.remove("has-open-dropdown");
+        }
+
+        function toggle() {
+          isOpen() ? close() : open();
+        }
+
+        trigger.addEventListener("click", (event) => {
+          event.stopPropagation();
+          toggle();
+        });
+
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            isOpen() ? moveHighlight(1) : open();
+          } else if (event.key === "Escape") {
+            close();
+          }
+        });
+
+        panel.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            moveHighlight(1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            moveHighlight(-1);
+          } else if (event.key === "Enter") {
+            event.preventDefault();
+            selectHighlighted();
+          } else if (event.key === "Escape") {
+            close();
+            trigger.focus();
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!root.contains(event.target)) {
+            close();
+          }
+        });
+
+        const controller = {
+          setOptions(nextOptions) {
+            options = nextOptions;
+            refreshValueLabel();
+            if (isOpen()) {
+              renderList();
+            }
+          },
+          setValue(nextValue, opts) {
+            selectValue(nextValue, opts);
+          },
+          setPlaceholder(text) {
+            placeholderText = text;
+            refreshValueLabel();
+          },
+          getValue() {
+            return value;
+          },
+          open,
+          close
+        };
+
+        allDropdowns.push(controller);
+        return controller;
+      }
+
+      const codeLetterDropdown = createDropdown({
+        root: document.getElementById("codeLetterDropdown"),
+        trigger: document.getElementById("codeLetterTrigger"),
+        panel: document.getElementById("codeLetterPanel"),
+        list: document.getElementById("codeLetterList"),
+        valueLabel: document.getElementById("codeLetterValueLabel"),
+        placeholder: "G",
+        onChange: () => {
+          updateSummary();
+          persistState();
+        }
+      });
+      codeLetterDropdown.setOptions([
+        { value: "G", label: "G" },
+        { value: "P", label: "P" },
+        { value: "E", label: "E" },
+        { value: "R", label: "R" },
+        { value: "A", label: "A" }
+      ]);
+      codeLetterDropdown.setValue("G", { silent: true });
+
+      const titleDropdown = createDropdown({
+        root: document.getElementById("titleDropdown"),
+        trigger: document.getElementById("titleDropdownTrigger"),
+        panel: document.getElementById("titleDropdownPanel"),
+        list: document.getElementById("titleDropdownList"),
+        valueLabel: document.getElementById("titleDropdownValue"),
+        placeholder: "اختر المسمى",
+        onChange: (value) => {
+          setSelectedTitleForActiveContext(value);
+          updateSummary();
+          persistState();
+        }
+      });
+
+      function applySectorTheme(sectorId) {
+        const theme = sectorThemeMap[sectorId] || sectorThemeMap["red-crescent"];
+        document.documentElement.style.setProperty("--accent", theme.accent);
+        document.documentElement.style.setProperty("--accent-strong", theme.accentStrong);
+        document.documentElement.style.setProperty("--accent-soft", theme.accentSoft);
+        document.documentElement.style.setProperty("--accent-outline", theme.accentOutline);
+        document.documentElement.style.setProperty("--accent-shadow", theme.accentShadow);
+        document.documentElement.style.setProperty("--card-tint", theme.cardTint);
+        document.documentElement.style.setProperty("--card-tint-soft", theme.cardTintSoft);
+        document.documentElement.style.setProperty("--on-accent", getReadableTextColor(theme.accent));
+      }
+
+      function init() {
+        loadState();
+        attachEvents();
+        renderTabs();
+        renderTitleSelect();
+        renderRecentNames();
+        updateSummary();
+        setActiveSector(activeSector, false);
+        renderTabIcons();
+      }
+
+      function renderTabIcons() {
+        if (!window.reicon) {
+          return;
+        }
+
+        const iconSlots = [
+          { id: "redCrescentIcon", factory: reicon.MoonFog, options: { size: 16 } },
+          { id: "blaineIcon", factory: reicon.AlertTriangle2, options: { size: 16 } },
+          { id: "losSantosIcon", factory: reicon.AddressCard, options: { size: 16 } },
+          { id: "administrationIcon", factory: reicon.BadgePercent, options: { size: 16 } },
+          { id: "mechanicsIcon", factory: reicon.Gear2, options: { size: 16, weight: "Filled" } },
+          { id: "copyIcon", factory: reicon.CopySuccess2, options: { size: 18 } },
+          { id: "resetIcon", factory: reicon.RefreshCircle3, options: { size: 18 } },
+          { id: "dashboardIcon", factory: reicon.ClipboardList, options: { size: 30, weight: "Filled" } }
+        ];
+
+        iconSlots.forEach(({ id, factory, options }) => {
+          const slot = document.getElementById(id);
+          if (slot && typeof factory === "function") {
+            slot.appendChild(factory(options));
+          }
+        });
+      }
+
+      function attachEvents() {
+        document.querySelectorAll(".tab-btn").forEach((button) => {
+          button.addEventListener("click", () => switchSector(button.dataset.sector));
+        });
+
+        elements.nameInput.addEventListener("focus", handleNameFocus);
+        elements.nameInput.addEventListener("input", handleNameInput);
+        elements.nameInput.addEventListener("blur", () => {
+          const value = elements.nameInput.value.trim();
+          if (value) {
+            addRecentName(value);
+          }
+          setTimeout(() => hideRecentNames(), 140);
+        });
+
+        document.querySelectorAll(".division-tab").forEach((button) => {
+          button.addEventListener("click", () => switchDivision(button.dataset.division));
+        });
+
+        elements.codeNumber.addEventListener("input", handleCodeNumberInput);
+        elements.codeNumber.addEventListener("change", handleCodeChange);
+
+        elements.copyButton.addEventListener("click", copySummary);
+        elements.resetButton.addEventListener("click", resetSelections);
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".suggestion-wrap")) {
+            hideRecentNames();
+          }
+        });
+      }
+
+      function loadState() {
+        try {
+          const savedNames = localStorage.getItem(storageKeys.names);
+          recentNames = savedNames ? JSON.parse(savedNames) : [];
+
+          const savedLetter = localStorage.getItem(storageKeys.codeLetter);
+          if (savedLetter) {
+            codeLetterDropdown.setValue(savedLetter, { silent: true });
+          }
+
+          const savedNumber = localStorage.getItem(storageKeys.codeNumber);
+          if (savedNumber) {
+            elements.codeNumber.value = savedNumber;
+          }
+
+          const savedSector = localStorage.getItem(storageKeys.activeTab);
+          if (savedSector) {
+            activeSector = savedSector;
+          }
+
+          const savedDivision = localStorage.getItem(storageKeys.activeDivision);
+          if (savedDivision) {
+            activeDivision = savedDivision;
+          }
+
+          const savedTitles = localStorage.getItem(storageKeys.selectedTitleBySector);
+          if (savedTitles) {
+            selectedTitleBySector = JSON.parse(savedTitles);
+          }
+        } catch (error) {
+          console.warn("Unable to load saved state", error);
+          recentNames = [];
+          selectedTitleBySector = {};
+        }
+      }
+
+      function persistState() {
+        localStorage.setItem(storageKeys.names, JSON.stringify(recentNames));
+        localStorage.setItem(storageKeys.codeLetter, codeLetterDropdown.getValue());
+        localStorage.setItem(storageKeys.codeNumber, elements.codeNumber.value);
+        localStorage.setItem(storageKeys.activeTab, activeSector);
+        localStorage.setItem(storageKeys.activeDivision, activeDivision);
+        localStorage.setItem(storageKeys.selectedTitleBySector, JSON.stringify(selectedTitleBySector));
+      }
+
+      function renderTabs() {
+        applySectorTheme(activeSector);
+        document.querySelectorAll(".tab-btn").forEach((button) => {
+          const isActive = button.dataset.sector === activeSector;
+          button.classList.toggle("active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+        renderDivisionSelector();
+      }
+
+      function switchSector(sectorId) {
+        if (!sectorId || sectorId === activeSector) {
+          return;
+        }
+
+        activeSector = sectorId;
+        renderTabs();
+        elements.contentPanel.classList.remove("page-transition");
+        void elements.contentPanel.offsetWidth;
+        elements.contentPanel.classList.add("page-transition");
+        setActiveSector(sectorId, true);
+      }
+
+      function setActiveSector(sectorId, animate = true) {
+        const sectorMeta = sectorDefinitions.find((item) => item.id === sectorId) || sectorDefinitions[0];
+        activeSector = sectorMeta.id;
+        if (!sectorMeta.divisions) {
+          activeDivision = "general-security";
+        }
+        renderTabs();
+        elements.currentSectorLabel.textContent = sectorMeta.label;
+        renderTitleSelect();
+        updateSummary();
+        persistState();
+
+        if (animate) {
+          elements.contentPanel.classList.remove("page-transition");
+          void elements.contentPanel.offsetWidth;
+          elements.contentPanel.classList.add("page-transition");
+        }
+      }
+
+      function getCurrentSectorTitles() {
+        const sectorMeta = sectorDefinitions.find((item) => item.id === activeSector) || sectorDefinitions[0];
+        if (sectorMeta.divisions && (activeSector === "blaine" || activeSector === "red-crescent")) {
+          return sectorMeta.divisions[activeDivision]?.titles || [];
+        }
+        return sectorMeta.titles || [];
+      }
+
+      function getSelectedTitleForActiveContext() {
+        if ((activeSector === "blaine" || activeSector === "red-crescent") && activeDivision) {
+          return selectedTitleBySector[activeSector]?.[activeDivision] || "";
+        }
+        return selectedTitleBySector[activeSector] || "";
+      }
+
+      function setSelectedTitleForActiveContext(value) {
+        if ((activeSector === "blaine" || activeSector === "red-crescent") && activeDivision) {
+          if (!selectedTitleBySector[activeSector] || typeof selectedTitleBySector[activeSector] !== "object") {
+            selectedTitleBySector[activeSector] = {};
+          }
+          selectedTitleBySector[activeSector][activeDivision] = value;
+        } else {
+          selectedTitleBySector[activeSector] = value;
+        }
+      }
+
+      function renderDivisionSelector() {
+        const shouldShowDivisions = activeSector === "blaine" || activeSector === "red-crescent";
+        elements.divisionShell.hidden = !shouldShowDivisions;
+        if (!shouldShowDivisions) {
+          activeDivision = "general-security";
+        } else {
+          // Ensure activeDivision is valid for the current sector
+          const sectorMeta = sectorDefinitions.find((item) => item.id === activeSector);
+          if (sectorMeta && sectorMeta.divisions) {
+            const validDivisions = Object.keys(sectorMeta.divisions);
+            if (!validDivisions.includes(activeDivision)) {
+              activeDivision = validDivisions[0];
+            }
+          }
+        }
+        // Update aria-label based on current sector
+        const tablist = document.querySelector(".division-tabs");
+        if (tablist) {
+          tablist.setAttribute("aria-label", activeSector === "blaine" ? "أقسام الشرطة" : "مناطق الهلال الأحمر");
+        }
+        let visibleCount = 0;
+        document.querySelectorAll(".division-tab").forEach((button) => {
+          const isActive = button.dataset.division === activeDivision;
+          button.classList.toggle("active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+          // Show/hide tabs based on sector
+          const buttonSector = button.dataset.sector || activeSector;
+          button.hidden = buttonSector !== activeSector;
+          if (!button.hidden) {
+            visibleCount += 1;
+          }
+        });
+        if (tablist) {
+          tablist.style.setProperty("--division-columns", String(visibleCount || 2));
+        }
+      }
+
+      function switchDivision(divisionId) {
+        if (!divisionId || divisionId === activeDivision) {
+          return;
+        }
+        activeDivision = divisionId;
+        renderDivisionSelector();
+        renderTitleSelect();
+        updateSummary();
+        persistState();
+      }
+
+      function renderTitleSelect() {
+        const titles = getCurrentSectorTitles();
+        titleDropdown.setPlaceholder(titles.length ? "اختر المسمى" : "أضف مسميات لهذا القطاع");
+        titleDropdown.setOptions(titles.map((title) => ({ value: title, label: title })));
+        const savedTitle = getSelectedTitleForActiveContext();
+        titleDropdown.setValue(savedTitle, { silent: true });
+      }
+
+      function handleNameFocus() {
+        renderRecentNames();
+        if (recentNames.length) {
+          showRecentNames();
+        }
+      }
+
+      function handleNameInput() {
+        renderRecentNames();
+        if (recentNames.length) {
+          showRecentNames();
+        } else {
+          hideRecentNames();
+        }
+        updateSummary();
+      }
+
+      function addRecentName(value) {
+        const cleaned = value.replace(/\s+/g, " ").trim();
+        if (!cleaned) {
+          return;
+        }
+
+        recentNames = recentNames.filter((name) => name.toLowerCase() !== cleaned.toLowerCase());
+        recentNames.unshift(cleaned);
+        recentNames = recentNames.slice(0, 20);
+        persistState();
+      }
+
+      function renderRecentNames() {
+        const query = elements.nameInput.value.trim().toLowerCase();
+        const matches = query
+          ? recentNames.filter((name) => name.toLowerCase().includes(query))
+          : recentNames;
+
+        elements.recentNamesList.innerHTML = "";
+        if (!matches.length) {
+          elements.recentNamesList.hidden = true;
+          return;
+        }
+
+        const heading = document.createElement("div");
+        heading.textContent = "المستخدمة مؤخراً";
+        heading.style.padding = "10px 14px 6px";
+        heading.style.fontSize = "0.76rem";
+        heading.style.textTransform = "uppercase";
+        heading.style.letterSpacing = "0.18em";
+        heading.style.color = "var(--muted)";
+        elements.recentNamesList.appendChild(heading);
+
+        matches.forEach((name) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "suggestion-item";
+          button.textContent = name;
+          button.addEventListener("click", () => {
+            elements.nameInput.value = name;
+            updateSummary();
+            hideRecentNames();
+          });
+          elements.recentNamesList.appendChild(button);
+        });
+
+        elements.recentNamesList.hidden = false;
+      }
+
+      function showRecentNames() {
+        elements.recentNamesList.hidden = false;
+        elements.nameInput.setAttribute("aria-expanded", "true");
+      }
+
+      function hideRecentNames() {
+        elements.recentNamesList.hidden = true;
+        elements.nameInput.setAttribute("aria-expanded", "false");
+      }
+
+      function handleCodeChange() {
+        const value = (elements.codeNumber.value || "").replace(/\D/g, "").slice(0, 3);
+        elements.codeNumber.value = value;
+        updateSummary();
+        persistState();
+      }
+
+      function handleCodeNumberInput(event) {
+        const value = event.target.value.replace(/\D/g, "").slice(0, 3);
+        elements.codeNumber.value = value;
+        updateSummary();
+        persistState();
+      }
+
+      function formatCodeNumber(value) {
+        const numeric = String(value || "").replace(/\D/g, "");
+        if (!numeric) {
+          return "";
+        }
+        const parsed = Math.max(0, Math.min(999, Number(numeric)));
+        return String(parsed).padStart(3, "0");
+      }
+
+      function formatResultDisplay() {
+        const name = elements.nameInput.value.trim() || "—";
+        const codeLetter = codeLetterDropdown.getValue() || "G";
+        const codeNumber = formatCodeNumber(elements.codeNumber.value || "");
+        const title = getSelectedTitleForActiveContext() || "—";
+        const code = codeNumber ? `${codeLetter}-${codeNumber}` : "—";
+
+        // Show/hide name field based on sector
+        const showName = activeSector === "mechanics";
+        document.getElementById("summaryNameItem").hidden = !showName;
+
+        if (activeSector === "red-crescent") {
+          // Red Crescent format
+          if (title === "إشراف عام") {
+            return `${code} | ${title}`;
+          } else if (title === "إشراف ميداني") {
+            const divisionLabels = {
+              los: "لــــوس",
+              "san-diego": "ســـانــدي",
+              paleto: "بـــولـيــتو"
+            };
+            const division = divisionLabels[activeDivision] || "";
+            return `${code} | ${title} | ${division}`;
+          } else if (title !== "—") {
+            return `${code} | ${title}`;
+          } else {
+            return "—";
+          }
+        } else if (activeSector === "mechanics") {
+          // Mechanics format with name
+          return name !== "—" ? `${name} | ${code} | ${title}` : `${code} | ${title}`;
+        } else {
+          // Other sectors format
+          return title !== "—" ? `${code} | ${title}` : "—";
+        }
+      }
+
+      function updateSummary() {
+        const name = elements.nameInput.value.trim() || "—";
+        const codeLetter = codeLetterDropdown.getValue() || "G";
+        const codeNumber = formatCodeNumber(elements.codeNumber.value || "");
+        const title = getSelectedTitleForActiveContext() || "—";
+
+        elements.summaryName.textContent = name;
+        elements.summaryCode.textContent = codeNumber ? `${codeLetter}-${codeNumber}` : "—";
+        elements.summaryTitleValue.textContent = formatResultDisplay();
+      }
+
+      async function copySummary() {
+        const resultDisplay = formatResultDisplay();
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(resultDisplay);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = resultDisplay;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+          }
+
+          showToast("تم النسخ إلى الحافظة");
+        } catch (error) {
+          showToast("فشل النسخ، حاول مرة أخرى.");
+        }
+      }
+
+      function resetSelections() {
+        elements.nameInput.value = "";
+        codeLetterDropdown.setValue("G", { silent: true });
+        elements.codeNumber.value = "";
+        selectedTitleBySector = {};
+        activeDivision = "general-security";
+        renderDivisionSelector();
+        renderTitleSelect();
+        updateSummary();
+        persistState();
+        showToast("تمت إعادة التعيين");
+      }
+
+      function showToast(message) {
+        elements.toast.textContent = message;
+        elements.toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          elements.toast.classList.remove("show");
+        }, 1850);
+      }
+
+      init();
+    </script>
+  </body>
+</html>
